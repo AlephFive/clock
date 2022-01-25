@@ -18,7 +18,7 @@ function draw() {
 
 	let hour_left = 24 - hour();
 	//let hour_left = 24 - 0;
-	let minute_left = 60 - minute();
+	let minute_left = 59 - minute();
 	let second_left = 60 - second();
 
 	if(minute() !== prev_minute){
@@ -44,8 +44,9 @@ function draw() {
 
 
 		if(h == hour_left-1){
-			rect(x , y + (sq_size - sq_size*(minute_left/60)), sq_size, sq_size*(minute_left/60))
-			rect(x , y + (sq_size - sq_size*(minute_left/60) - sq_size*(1/60)), sq_size*(second_left/60), sq_size*(1/60))
+
+			if (minute_left > 0) rect(x , y + (sq_size - sq_size*((minute_left)/60) + sq_size*(1/60)), sq_size, sq_size*(minute_left/60))
+			rect(x , y + (sq_size - sq_size*((minute_left)/60) ), sq_size*(second_left/60), sq_size*(1/60))
 		}
 		else{
 			square(x , y, sq_size)
