@@ -1,39 +1,43 @@
 var hour_size;
+var prev_minute;
 
 function setup() {
-	createCanvas(windowHeight - 15,windowHeight - 15); // make an HTML canvas element width x height pixels
-	hour_size = windowHeight/6;
+
+	let wh = windowHeight - 60
+	createCanvas(wh*(4/6),wh); // make an HTML canvas element width x height pixels
+	hour_size = height/6;
+	prev_minute = minute();
 }
 
 function draw() {
-	background(225);
-	textSize(32);
-	fill(180);
-	text(hour(), 10, 30);
-	fill(100);
-	text(minute(), 10, 60);
+	background(250);
 	fill(0);
-	text(second(), 10, 90);
 
-	
+	let hour_left = 24 - hour();
+	//let hour_left = 24 - 0;
+	let minute_left = 60 - minute();
+	let second_left = 60 - second();
+
+	if(minute() !== prev_minute){
+		prev_minute = minute();
+		console.log(prev_minute)
+	}
 
 
-
-	rect(30, 20, 55, 55);
-
-	for(let h = 0; h < hour()+1; h++){
+	for(let h = 0; h < hour_left; h++){
 		let rem = h % 4;
 		let hei = Math.floor(h/4);
 
 		let x = rem* hour_size;
-		let y = windowHeight-hour_size - hei * hour_size
-		let sq_size = hour_size-20;
+		let y = height-hour_size - hei * hour_size
+		let sq_size = hour_size;
 
 		
 
 
-		if(h == hour()){
-			rect(x , y, sq_size, sq_size*(minute()/60))
+		if(h == hour_left-1){
+			rect(x , y + (sq_size - sq_size*(minute_left/60)), sq_size, sq_size*(minute_left/60))
+			rect(x , y + (sq_size - sq_size*(minute_left/60) - sq_size*(1/60)), sq_size*(second_left/60), sq_size*(1/60))
 		}
 		else{
 			square(x , y, sq_size)
