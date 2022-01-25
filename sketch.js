@@ -4,7 +4,7 @@ var curr_day;
 
 function setup() {
 
-	let wh = windowHeight - 60
+	let wh = windowHeight - 100
 	createCanvas(wh*(4/6),wh); // make an HTML canvas element width x height pixels
 	hour_size = height/6;
 	prev_minute = minute();
