@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() {
-	background(253);
+	background(250);
 	fill(0);
 
 	let hour_left = 24 - hour();
