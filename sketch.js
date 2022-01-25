@@ -1,5 +1,6 @@
 var hour_size;
 var prev_minute;
+var curr_day;
 
 function setup() {
 
@@ -7,10 +8,12 @@ function setup() {
 	createCanvas(wh*(4/6),wh); // make an HTML canvas element width x height pixels
 	hour_size = height/6;
 	prev_minute = minute();
+	curr_day = day();
+	document.title = day() + "/" + month() + "/" + year();
 }
 
 function draw() {
-	background(250);
+	background(253);
 	fill(0);
 
 	let hour_left = 24 - hour();
@@ -21,7 +24,12 @@ function draw() {
 	if(minute() !== prev_minute){
 		prev_minute = minute();
 		console.log(prev_minute)
+
+		if(day() !== curr_day){
+			document.title = day() + "/" + month() + "/" + year();
+		}
 	}
+	
 
 
 	for(let h = 0; h < hour_left; h++){
